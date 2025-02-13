@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+.env
+*.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Logs
+logs/
+*.log
+
+# Database and migrations
+instance/
+db.sqlite3
+migrations/  # Ignore Flask-Migrate migration files
+migrations/versions/*  # If using Flask-Migrate, ignore specific versions
+!migrations/versions/__init__.py  # Keep __init__.py
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Docker
+*.dockerignore
+docker-compose.override.yml
+
+# Dependencies
+*.egg-info/
+pip-log.txt
