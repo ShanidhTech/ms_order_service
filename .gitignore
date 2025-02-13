@@ -30,3 +30,7 @@ docker-compose.override.yml
 # Dependencies
 *.egg-info/
 pip-log.txt
+
+
+migrations/versions/*.pyc  # Compiled Python files (usually not needed)
+migrations/versions/__pycache__/  # Python bytecode cache
