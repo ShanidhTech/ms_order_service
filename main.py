@@ -1,14 +1,26 @@
-from flask import Flask, request, jsonify
+# main.py (or app.py - choose a consistent name)
+from flask import Flask
+from . import config  # Import configuration
+from . import db  # Import the db instance (after initializing it)
+from .routes import order_bp  # Import the order blueprint
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-orders = []
+# Load configuration
+app.config.from_object(config)
 
-@app.route("/orders/", methods=["POST"])
-def create_order():
-    order = request.json
-    orders.append(order)
-    return jsonify({"message": "Order created", "order": order}), 201
+# Initialize SQLAlchemy
+db.init_app(app)  # Initialize db with the app
+
+# Register Blueprints
+app.register_blueprint(order_bp)
+
+# Create tables (run this ONCE to create the database schema)
+with app.app_context():
+    db.create_all()
+
+migrate = Migrate(app, db)    
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8002)
+    app.run(host="127.0.0.1", port=8002, debug=True)  # debug=True for development
