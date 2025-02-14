@@ -21,9 +21,9 @@ class Order(db.Model):
     total_amount = db.Column(Numeric(10, 2), nullable=False)
     shipping_address = db.Column(db.String(300), nullable=False)
     # status = db.Column(db.Integer, nullable=False)
-    status = db.Column(Enum(OrderStatus), nullable=False)
+    status = db.Column(Enum(OrderStatus), nullable=False, default=OrderStatus.PENDING)
 
 
 
     def __repr__(self):
-        return f'<Order {self.product} x {self.quantity}>'
+        return f'<Order {self.book_id} x {self.quantity}>'
